@@ -45,25 +45,6 @@ async def cancel_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Ok.")
 
 
-@error_logging
-@delete_update_message
-async def wait_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    context.user_data['locked'] = True
-
-
-@error_logging
-@delete_update_message
-async def reply_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    context.user_data['locked'] = False
-    chunks = await assistant_handler(update, context)
-    for chunk in chunks:
-        time.sleep(0.5)
-        try:
-            await send_or_edit_message(context, text=chunk, chat_id=update.effective_chat.id, parse_mode="Markdown")
-        except Exception as e:
-            await send_or_edit_message(context, text=chunk, chat_id=update.effective_chat.id)
-
-
 #  /start command handler
 @error_logging
 @delete_update_message
