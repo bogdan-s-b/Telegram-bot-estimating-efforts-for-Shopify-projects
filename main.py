@@ -16,8 +16,6 @@ def main():
     # app.add_handler(CommandHandler("estimate", estimate_handler))
     app.add_handler(CommandHandler("uid", uid_handler))
     app.add_handler(CommandHandler("debug", debug_handler))
-    # app.add_handler(CommandHandler("wait", wait_handler))
-    # app.add_handler(CommandHandler("reply", reply_handler))
 
     states_dict = {
         CONTINUE: [
